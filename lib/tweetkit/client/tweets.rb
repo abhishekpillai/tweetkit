@@ -29,14 +29,6 @@ module Tweetkit
       def delete_tweet(id)
         delete "tweets/#{id}"
       end
-
-      def following(id, **options)
-        get "users/#{id}/following", **options
-      end
-
-      def followers(id, **options)
-        get "users/#{id}/followers", **options
-      end
     end
   end
 end
