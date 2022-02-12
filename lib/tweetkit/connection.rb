@@ -55,7 +55,11 @@ module Tweetkit
                    connection.delete(url, data.to_json, 'Content-Type' => 'application/json')
                  end
 
-      Tweetkit::Response::Tweets.new response, connection: connection, twitter_request: { previous_url: @previous_url, previous_query: @previous_query }
+      if endpoint.include? "users"
+        Tweetkit::Response::Users.new response, connection: connection, twitter_request: { previous_url: @previous_url, previous_query: @previous_query }
+      else
+        Tweetkit::Response::Tweets.new response, connection: connection, twitter_request: { previous_url: @previous_url, previous_query: @previous_query }
+      end
     rescue StandardError => e
       raise e
     end

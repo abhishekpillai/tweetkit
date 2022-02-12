@@ -4,6 +4,22 @@ require 'json'
 
 module Tweetkit
   module Response
+    class Users
+      attr_accessor :response
+
+      def initialize(response, **options)
+        parse! response, **options
+      end
+
+      def parse!(response, **options)
+        parse_response response
+      end
+
+      def parse_response(response)
+        @response = response.body
+      end
+    end
+
     class Tweets
       include Enumerable
 
