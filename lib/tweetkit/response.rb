@@ -5,7 +5,7 @@ require 'json'
 module Tweetkit
   module Response
     class Users
-      attr_accessor :response
+      attr_accessor :original_response, :response
 
       def initialize(response, **options)
         parse! response, **options
@@ -16,7 +16,8 @@ module Tweetkit
       end
 
       def parse_response(response)
-        @response = response.body
+        @original_response = response.body
+        @response = JSON.parse(@original_response)
       end
     end
 
